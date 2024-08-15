@@ -1,7 +1,7 @@
 import BTN_Comp from "@/components/comp_btn";
 import Label_Text_Comp from "@/components/comp_label_text";
 import React from "react";
-import { View, Text} from "react-native";
+import { View, Text } from "react-native";
 import StyleSheet from "react-native-media-query"
 
 
@@ -10,14 +10,16 @@ export default function home(){
     return(
         <View style={styles.body}>
             <View style={styles.container}>
-                <Text style={styles.texto}>Login</Text>
+                <Text style={styles.texto}>Cadastro</Text>
                 <View>
+                    <Label_Text_Comp titulo={'Nome'}/>
                     <Label_Text_Comp titulo={'Email'}/>
-                    <Label_Text_Comp titulo={'Senha'} password/>
+                    <Label_Text_Comp titulo={'Senha'}/>
+                    <Label_Text_Comp titulo={'Repetir Senha'}/>
                 </View>
                 <View style={styles.buttons}>
-                    <BTN_Comp titulo={"Login"} acao={"/"}/>
-                    <BTN_Comp titulo={"Cadastro"} acao={"/cadastro"}/>
+                    <BTN_Comp titulo={"Criar"} acao={"/cadastro"}/>
+                    <BTN_Comp titulo={"Voltar"} acao={"/"}/>
                 </View>
             </View>
         </View>
@@ -41,7 +43,7 @@ const {ids,styles} = StyleSheet.create({
         borderRadius:7,
         '@media(max-width: 600px)':{
             width: "90%",
-            height: "60%"
+            height: "auto",
         }
     },
     buttons:{
