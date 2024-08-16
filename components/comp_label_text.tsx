@@ -4,14 +4,14 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 interface props{
     titulo: string;
     password?: boolean;
+    updateValor(value: any): void;
 }
 
-export default function Label_Text_Comp(props: props){
-    const [texto, onChangeTexto] = React.useState();
+export default function Label_Text_Comp({titulo, password, updateValor}: props){
     return(
         <View style={style.view}>
-            <Text style={style.text}>{props.titulo}</Text>
-            <TextInput style={style.input} secureTextEntry={props.password}>{texto}</TextInput>
+            <Text style={style.text}>{titulo}</Text>
+            <TextInput style={style.input} id={titulo} secureTextEntry={password} onChangeText={(valor) => updateValor(valor)}></TextInput>
         </View>
     )
 }

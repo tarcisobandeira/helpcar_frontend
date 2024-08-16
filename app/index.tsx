@@ -6,14 +6,16 @@ import StyleSheet from "react-native-media-query"
 
 
 export default function home(){
-    
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
     return(
         <View style={styles.body}>
             <View style={styles.container}>
                 <Text style={styles.texto}>Login</Text>
                 <View>
-                    <Label_Text_Comp titulo={'Email'}/>
-                    <Label_Text_Comp titulo={'Senha'} password/>
+                    <Label_Text_Comp titulo={'Email'} updateValor={setEmail}/>
+                    <Label_Text_Comp titulo={'Senha'} updateValor={setPassword} password/>
                 </View>
                 <View style={styles.buttons}>
                     <BTN_Comp titulo={"Login"} acao={"/"}/>
