@@ -1,9 +1,11 @@
-import BTN_Comp from "@/components/comp_btn";
+import Btn_Func from "@/components/buttons/btn_func";
+import Btn_Link from "@/components/buttons/btn_link";
 import Label_Text_Comp from "@/components/comp_label_text";
-import { PostAddUsuario } from "@/hooks/POST_criarUsuario";
+import { PostAddUsuario } from "@/hooks/usuarios/POST_criarUsuario";
 import { Usuario } from "@/interfaces/usuario";
+import { router } from "expo-router";
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import StyleSheet from "react-native-media-query"
 
 
@@ -16,13 +18,18 @@ export default function home(){
     const { mutate } = PostAddUsuario();
 
     const submit = () =>{
-        const usuario: Usuario = {
-            firstname,
-            lastname,
-            email,
-            password
+        if(password === PSR){
+            const usuario: Usuario = {
+                firstname,
+                lastname,
+                email,
+                password
+            };
+            mutate(usuario);
+            router.navigate("/");
+        }else{
+            console.log("Não é igual");
         }
-        mutate(usuario);
     }
 
     return(
@@ -33,12 +40,12 @@ export default function home(){
                     <Label_Text_Comp titulo={'Nome'} updateValor={setFirstname}/>
                     <Label_Text_Comp titulo={'Sobrenome'} updateValor={setLastname}/>
                     <Label_Text_Comp titulo={'Email'} updateValor={setEmail}/>
-                    <Label_Text_Comp titulo={'Senha'} updateValor={setPassword}/>
-                    <Label_Text_Comp titulo={'Repetir Senha'} updateValor={setPSR}/>
+                    <Label_Text_Comp titulo={'Senha'} updateValor={setPassword} password/>
+                    <Label_Text_Comp titulo={'Repetir Senha'} updateValor={setPSR} password/>
                 </View>
                 <View style={styles.buttons}>
-                    <Button title="Criar" onPress={submit} />
-                    <BTN_Comp titulo={"Voltar"} acao={"/"}/>
+                    <Btn_Func titulo={"Criar"} onPress={submit}/>
+                    <Btn_Link titulo={"Voltar"} link={"/"}/>
                 </View>
             </View>
         </View>
@@ -57,7 +64,7 @@ const {ids,styles} = StyleSheet.create({
         justifyContent: "space-between",
         backgroundColor: "#fff",
         width: 445,
-        height: "70%",
+        height: "auto",
         padding: 10,
         borderRadius:7,
         '@media(max-width: 600px)':{

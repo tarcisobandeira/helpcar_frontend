@@ -1,17 +1,19 @@
 import React from "react";
-import { View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { Href, Link } from "expo-router";
 import StyleSheet from "react-native-media-query"
 
 interface props{
     titulo: string;
-    acao: Href<string|object>;
+    link: Href;
 }
 
-export default function BTN_Comp(props: props){
+export default function Btn_Link(props: props){
     return(
         <View style={styles.view}>
-            <Link style={styles.button} href={props.acao}>{props.titulo}</Link>
+            <Link style={styles.button} href={props.link}>
+                <Text>{props.titulo}</Text>
+            </Link>
         </View>
     )
 }
@@ -25,11 +27,11 @@ const {ids, styles} = StyleSheet.create({
         }},
     button:{
         backgroundColor: "#F4684A",
-        color: "#fff",
         padding: 5,
+        borderRadius: 7,
+        color: "#fff",
         textAlign: "center",
         fontSize: 16,
         fontWeight: "bold",
-        borderRadius: 7
     }
 })
