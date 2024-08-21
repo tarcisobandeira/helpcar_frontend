@@ -1,34 +1,26 @@
 import Btn_Func from "@/components/buttons/btn_func";
 import Btn_Link from "@/components/buttons/btn_link";
 import Label_Text_Comp from "@/components/comp_label_text";
-import { GetExistUser } from "@/hooks/usuarios/GET_ExistUsuario";
+import { getUser } from "@/hooks/usuarios/GET_ExistUsuario";
 import { router } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import StyleSheet from "react-native-media-query"
 
-
 export default function home() {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
-    const login = () => {
-        if (email != "") {
-            const { data } = GetExistUser(email);
-            if (data?.email != null) {
-                if (data.password === password) {
-                    router.navigate("/telaInicial")
-                } else {
-                    console.log("Senha errada.")
-                }
-            } else {
-                console.log("Usuário não existe.")
-            }
-        }else(
-            console.log("Campo vaio")
-        )
-    }
-
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [data, setData] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(false);
+    
+    useEffect(() => {
+        getUser(setData, setLoading, setError);
+        data.find()
+    }, [])
+    useEffect(() => {
+        console.log(data);
+    }, [data])
     return (
         <View style={styles.body}>
             <View style={styles.container}>
@@ -38,7 +30,7 @@ export default function home() {
                     <Label_Text_Comp titulo={'Senha'} updateValor={setPassword} password />
                 </View>
                 <View style={styles.buttons}>
-                    <Btn_Func titulo={"Login"} onPress={login} />
+                    <Btn_Func titulo={"Login"} onPress={""} />
                     <Btn_Link titulo={"Cadastro"} link={"/cadastro"} />
                 </View>
             </View>
