@@ -1,26 +1,28 @@
 import Btn_Func from "@/components/buttons/btn_func";
 import Btn_Link from "@/components/buttons/btn_link";
 import Label_Text_Comp from "@/components/comp_label_text";
-import { getUser } from "@/hooks/usuarios/GET_ExistUsuario";
 import { router } from "expo-router";
 import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import StyleSheet from "react-native-media-query"
+import { GetAllUser } from "@/hooks/usuarios/GET_AllUsuario";
 
 export default function home() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [data, setData] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(false);
-    
-    useEffect(() => {
-        getUser(setData, setLoading, setError);
-        data.find()
-    }, [])
-    useEffect(() => {
-        console.log(data);
-    }, [data])
+
+    function login(){
+        const { data } = GetAllUser();
+        const findUser = data?.find(data => data.email == email);
+        if(findUser != undefined){
+            if(findUser.password === password){
+                router.navigate("/user[id]",{})
+            }
+        }else{
+
+        }
+    }
+
     return (
         <View style={styles.body}>
             <View style={styles.container}>
