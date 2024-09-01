@@ -26,7 +26,7 @@ export default function home(){
                 password
             };
             mutate(usuario);
-            router.navigate("/");
+            router.navigate("/login");
         }else{
             console.log("Não é igual");
         }
@@ -45,7 +45,7 @@ export default function home(){
                 </View>
                 <View style={styles.buttons}>
                     <Btn_Func titulo={"Criar"} onPress={submit}/>
-                    <Btn_Link titulo={"Voltar"} link={"/"}/>
+                    <Btn_Link titulo={"Voltar"} link={"/login"}/>
                 </View>
             </View>
         </View>

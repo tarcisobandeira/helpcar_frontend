@@ -1,11 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { Usuario } from "@/interfaces/usuario";
-import axios, { AxiosPromise } from "axios";
-
-const API_URL = "http://192.168.1.162:8080"
+import { AxiosPromise } from "axios";
+import api from "@/services/api";
 
 const postData = async (data: Usuario): AxiosPromise<any>=> {
-    const response = axios.post(API_URL + "/user/save", data);
+    const response = api.post("/user/save", data);
     return response;
 }
 
