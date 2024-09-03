@@ -1,4 +1,4 @@
-import { Image, ImageSourcePropType, Text, View } from "react-native"
+import { Image, Text, View } from "react-native"
 import StyleSheet from "react-native-media-query"
 
 interface props{

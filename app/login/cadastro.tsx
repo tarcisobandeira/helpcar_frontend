@@ -67,7 +67,7 @@ const {ids,styles} = StyleSheet.create({
         height: "auto",
         padding: 10,
         borderRadius:7,
-        '@media(max-width: 600px)':{
+        '@media(max-width: 700px)':{
             width: "90%",
             height: "auto",
         }
@@ -75,7 +75,7 @@ const {ids,styles} = StyleSheet.create({
     buttons:{
         flexDirection: "row",
         justifyContent: "space-around",
-        '@media(max-width: 600px)':{
+        '@media(max-width: 700px)':{
             flexDirection: "column",
             justifyContent: "center"
         }

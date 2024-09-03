@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Button } from "react-native";
-import { Link } from "expo-router";
+import { Link, Tabs } from "expo-router";
 import CardLogin from "@/components/cards/card_login";
 
 
@@ -12,18 +12,12 @@ export default function Layout() {
     return (
 
         <QueryClientProvider client={queryClient}>
-            <GestureHandlerRootView style={{ flex: 1 }}>
-                <Drawer>
-                    <Drawer.Screen name="index" options={{
-                        drawerLabel: 'Home',
-                        title: 'HelpCar',
-                        headerRight: () => (
-                            <CardLogin/>
-                        )
-                    }} />
-                    <Drawer.Screen name="login" options={{ title: 'Login' }} />
-                </Drawer>
-            </GestureHandlerRootView>
+            <Tabs screenOptions={{headerShown:false}}>
+                <Tabs.Screen name="index" options={{title: "Início"}}/>
+                <Tabs.Screen name="busca" options={{title: "Busca"}}/>
+                <Tabs.Screen name="login/index" options={{title: "Login", headerShown:false}} />
+                <Tabs.Screen name="login/cadastro" options={{tabBarItemStyle:{display:"none"}, headerShown:false, tabBarStyle:{display:"none"}}}/>
+            </Tabs>
         </QueryClientProvider>
     )
 }
